@@ -1,0 +1,53 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MySQL;NON_KEYWORDS=USER,VALUE,INTERVAL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        globally_quoted_identifiers: false
+        hbm2ddl:
+          halt_on_error: false
+
+  flyway:
+    enabled: false
+
+  cache:
+    type: none
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+file:
+  upload:
+    dir: ./test-uploads
+  base-url: http://localhost:8080
+
+wechat:
+  miniapp:
+    appid: test-appid
+    secret: test-secret
+  pay:
+    appid: test-appid
+    mchid: test-mchid
+    mch-key: test-key-must-be-32-characters00
+    notify-url: http://localhost:8080/test/callback
+    key-path: classpath:cert/test.p12
+
+ai:
+  gemini:
+    api-key: test-key
+
+logging:
+  level:
+    com.subscription.platform: WARN
+    org.hibernate.tool.schema: ERROR

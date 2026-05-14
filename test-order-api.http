@@ -1,0 +1,65 @@
+### 订单API测试文件
+### 使用 REST Client 或 Postman 进行测试
+
+@baseUrl = http://localhost:8080/api/v1
+@token = YOUR_AUTH_TOKEN_HERE
+
+### 1. 获取全部订单（默认）
+GET {{baseUrl}}/user/orders?page=1&pageSize=20
+Authorization: Bearer {{token}}
+
+###
+
+### 2. 获取待支付订单
+GET {{baseUrl}}/user/orders?page=1&pageSize=20&status=PENDING
+Authorization: Bearer {{token}}
+
+###
+
+### 3. 获取已支付订单
+GET {{baseUrl}}/user/orders?page=1&pageSize=20&status=PAID
+Authorization: Bearer {{token}}
+
+###
+
+### 4. 搜索订单（按订阅内容）
+GET {{baseUrl}}/user/orders?page=1&pageSize=20&search=VIP
+Authorization: Bearer {{token}}
+
+###
+
+### 5. 按时间范围查询（最近7天）
+GET {{baseUrl}}/user/orders?page=1&pageSize=20&startDate=2026-05-05&endDate=2026-05-12
+Authorization: Bearer {{token}}
+
+###
+
+### 6. 组合查询：已支付 + VIP + 最近30天
+GET {{baseUrl}}/user/orders?page=1&pageSize=20&status=PAID&search=VIP&startDate=2026-04-12&endDate=2026-05-12
+Authorization: Bearer {{token}}
+
+###
+
+### 7. 组合查询：待支付 + 分类订阅
+GET {{baseUrl}}/user/orders?page=1&pageSize=20&status=PENDING&search=分类
+Authorization: Bearer {{token}}
+
+###
+
+### 8. 测试分页（第2页）
+GET {{baseUrl}}/user/orders?page=2&pageSize=10
+Authorization: Bearer {{token}}
+
+###
+
+### 9. 测试空搜索结果
+GET {{baseUrl}}/user/orders?page=1&pageSize=20&search=不存在的内容
+Authorization: Bearer {{token}}
+
+###
+
+### 10. 测试日期边界（未来日期）
+GET {{baseUrl}}/user/orders?page=1&pageSize=20&startDate=2027-01-01&endDate=2027-12-31
+Authorization: Bearer {{token}}
+
+###

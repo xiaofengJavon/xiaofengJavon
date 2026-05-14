@@ -1,0 +1,575 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* ── Header section ── */
+.header-section {
+  background-color: #fff;
+  z-index: 20;
+  box-shadow: 0 2rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+/* ── Header top: brand ↔ search crossfade ── */
+.header-top {
+  position: relative;
+  padding-top: 20rpx;
+  margin-bottom: 0;
+}
+
+.top-bar {
+  padding: 0 32rpx 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.top-bar-out {
+  opacity: 0;
+  transform: translateY(-10rpx);
+  pointer-events: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.logo {
+  background-color: #4f46e5;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 40rpx;
+}
+
+.app-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #0f172a;
+  line-height: 1;
+  display: block;
+}
+
+.app-slogan {
+  font-size: 20rpx;
+  color: #94a3b8;
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 6rpx;
+}
+
+/* Search icon button (right of top-bar) */
+.search-icon-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.search-icon-btn:active { background: #e2e8f0; }
+
+.search-icon-glyph {
+  font-size: 36rpx;
+  line-height: 1;
+}
+
+/* ── Expanded search bar (absolute over top-bar) ── */
+.search-full-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20rpx;
+  bottom: 0;
+  padding: 0 32rpx 20rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  opacity: 0;
+  transform: translateY(10rpx);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.search-bar-in {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.search-input-wrap {
+  flex: 1;
+  min-width: 0;
+  height: 80rpx;
+  background: #f1f5f9;
+  border-radius: 999rpx;
+  padding: 0 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  box-sizing: border-box;
+}
+
+.search-lead-icon {
+  font-size: 28rpx;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  font-size: 28rpx;
+  height: 80rpx;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.search-clear-btn {
+  width: 40rpx;
+  height: 40rpx;
+  background: #94a3b8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.search-clear-icon {
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 1;
+}
+
+.search-cancel-btn {
+  font-size: 28rpx;
+  color: #4f46e5;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ── Header body: banner + filter (collapses on search) ── */
+.header-body {
+  max-height: 2000rpx;
+  overflow: visible;
+  transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease;
+  opacity: 1;
+}
+
+.header-body-hidden {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+/* ── Banner swiper ── */
+.banner-swiper {
+  width: 100%;
+  height: 350rpx;
+  display: block;
+}
+
+.banner-img {
+  width: 100%;
+  height: 350rpx;
+  display: block;
+}
+
+/* ── Filter row: module switch (fixed left) + scrollable chips ── */
+.filter-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0 20rpx 28rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.module-mini-switch {
+  flex-shrink: 0;
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 18rpx;
+  padding: 4rpx;
+  margin-right: 16rpx;
+}
+
+.mini-btn {
+  padding: 10rpx 18rpx;
+  border-radius: 14rpx;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.mini-text {
+  font-size: 22rpx;
+  font-weight: bold;
+  color: #94a3b8;
+}
+
+.mini-ind {
+  background: #fff;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+}
+
+.mini-ind .mini-text { color: #4f46e5; }
+
+.mini-pol {
+  background: #fff;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+}
+
+.mini-pol .mini-text { color: #dc2626; }
+
+.filter-scroll {
+  flex: 1;
+  min-width: 0;
+}
+
+.filter-content {
+  display: flex;
+  align-items: center;
+  padding-right: 32rpx;
+}
+
+.filter-chip {
+  display: inline-flex;
+  padding: 8rpx 24rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  border: 2rpx solid #e2e8f0;
+  color: #64748b;
+  background-color: #fff;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.chip-active {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+  color: #fff;
+}
+
+.chip-selected {
+  background-color: #0f172a;
+  color: #fff;
+  border-color: #0f172a;
+}
+
+/* ── 展开/收起按钮 ── */
+.expand-btn-wrapper {
+  flex-shrink: 0;
+  padding-right: 28rpx;
+  padding-left: 8rpx;
+}
+
+.expand-btn {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 8rpx 20rpx;
+  background: #f1f5f9;
+  border-radius: 18rpx;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.expand-btn:active {
+  background: #e2e8f0;
+  transform: scale(0.95);
+}
+
+.expand-btn.expanded {
+  background: #4f46e5;
+}
+
+.expand-icon {
+  font-size: 20rpx;
+  color: #64748b;
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.expand-btn.expanded .expand-icon {
+  color: #fff;
+}
+
+.expand-text {
+  font-size: 22rpx;
+  font-weight: bold;
+  color: #64748b;
+  transition: color 0.3s ease;
+}
+
+.expand-btn.expanded .expand-text {
+  color: #fff;
+}
+
+/* ── 展开的类型选择容器 ── */
+.category-expand-container {
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease,
+              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  background: #fff;
+  padding: 0 28rpx;
+}
+
+.container-expanded {
+  opacity: 1;
+  padding: 20rpx 28rpx 28rpx;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+  animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20rpx);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.category-grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx 16rpx;
+  min-height: 80rpx;
+  background: #f8fafc;
+  border: 2rpx solid #e2e8f0;
+  border-radius: 16rpx;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+.category-grid-item:active {
+  transform: scale(0.95);
+}
+
+.grid-item-selected {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  border-color: #4f46e5;
+  box-shadow: 0 4rpx 12rpx rgba(79, 70, 229, 0.3);
+}
+
+.grid-item-text {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #475569;
+  transition: color 0.25s ease;
+}
+
+.grid-item-selected .grid-item-text {
+  color: #fff;
+}
+
+.divider {
+  width: 2rpx;
+  height: 40rpx;
+  background-color: #e2e8f0;
+  margin: 0 16rpx;
+  flex-shrink: 0;
+}
+
+/* ── Search result hint ── */
+.search-result-bar {
+  padding: 20rpx 32rpx 8rpx;
+}
+
+.search-result-text {
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+
+/* ── Leaderboard ── */
+.leaderboard {
+  padding: 32rpx 32rpx 40rpx;
+}
+
+.leaderboard-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #0f172a;
+  margin-bottom: 24rpx;
+}
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #f1f5f9;
+}
+
+.rank-item:last-child { border-bottom: none; }
+
+.rank-num {
+  width: 48rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.rank-top { color: #f97316; }
+
+.rank-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.rank-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1e293b;
+  line-height: 1.5;
+  margin-bottom: 8rpx;
+}
+
+.rank-meta {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.rank-category {
+  font-size: 22rpx;
+  color: #fff;
+  background: #4f46e5;
+  border-radius: 999rpx;
+  padding: 2rpx 14rpx;
+}
+
+.rank-views {
+  font-size: 22rpx;
+  color: #94a3b8;
+}
+
+.content-scroll {
+  flex: 1;
+  overflow: hidden;
+}
+
+.article-list {
+  padding: 32px; /* 16px -> 32px */
+  padding-bottom: 200px; /* 100px -> 200px */
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 0;
+  color: #94a3b8;
+  font-size: 28rpx;
+}
+
+/* Promo Overlay */
+.promo-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.promo-modal {
+  width: 600px; /* 300px -> 600px */
+  background-color: #fff;
+  border-radius: 48px; /* 24px -> 48px */
+  padding: 48px; /* 24px -> 48px */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.promo-close {
+  position: absolute;
+  top: 32px; /* 16px -> 32px */
+  right: 32px; /* 16px -> 32px */
+  width: 64px; /* 32px -> 64px */
+  height: 64px; /* 32px -> 64px */
+  background-color: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 32px; /* 16px -> 32px */
+}
+
+.promo-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.promo-icon {
+  font-size: 128px; /* 64px -> 128px */
+  margin-bottom: 32px; /* 16px -> 32px */
+}
+
+.promo-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #0f172a;
+  margin-bottom: 16rpx;
+}
+
+.promo-desc {
+  font-size: 28rpx;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 48rpx;
+}
+
+.promo-btn {
+  background-color: #4f46e5;
+  color: #fff;
+  width: 100%;
+  border-radius: 999rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
